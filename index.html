@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tome Nota</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="header__inner">
+      <div class="logo">
+        <svg class="logo__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4h16v16H4V4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <h1 class="logo__text">Tome Nota</h1>
+      </div>
+      <button type="button" class="btn btn--header" id="btnNovaAnotacao">
+        Nova anotação
+      </button>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="notes-section">
+      <div class="search-bar">
+        <svg class="search-bar__icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/>
+          <path d="M20 20l-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <input
+          type="search"
+          class="search-bar__input"
+          id="searchInput"
+          placeholder="Pesquisar por título ou descrição..."
+          autocomplete="off"
+        >
+      </div>
+
+      <div class="notes-empty" id="notesEmpty">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="12" width="48" height="40" rx="4" stroke="currentColor" stroke-width="2"/>
+          <path d="M20 24h24M20 32h24M20 40h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <p>Nenhuma anotação encontrada.</p>
+        <p class="notes-empty__hint">Clique em <strong>Nova anotação</strong> para começar.</p>
+      </div>
+
+      <ul class="notes-list" id="notesList"></ul>
+
+      <nav class="pagination" id="pagination" aria-label="Paginação de anotações" hidden>
+        <button type="button" class="pagination__btn" id="btnPaginaAnterior" disabled>Anterior</button>
+        <span class="pagination__info" id="paginationInfo"></span>
+        <button type="button" class="pagination__btn" id="btnPaginaProxima" disabled>Próxima</button>
+      </nav>
+    </section>
+  </main>
+
+  <dialog class="dialog" id="noteDialog">
+    <form class="dialog__form" id="noteForm" method="dialog">
+      <div class="dialog__header">
+        <h2 class="dialog__title" id="dialogTitle">Nova anotação</h2>
+        <button type="button" class="dialog__close" id="btnFecharDialog" aria-label="Fechar">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+
+      <div class="dialog__body">
+        <div class="form-group">
+          <label for="noteTitle">Título</label>
+          <input type="text" id="noteTitle" name="title" placeholder="Digite o título da anotação" required maxlength="120">
+        </div>
+        <div class="form-group">
+          <label for="noteDescription">Descrição</label>
+          <textarea id="noteDescription" name="description" placeholder="Digite a descrição da anotação" rows="8" maxlength="5000"></textarea>
+        </div>
+      </div>
+
+      <div class="dialog__footer">
+        <button type="button" class="btn btn--secondary" id="btnCancelar">Cancelar</button>
+        <button type="submit" class="btn btn--primary" id="btnSalvar">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog class="dialog dialog--confirm" id="confirmDialog">
+    <form class="dialog__form" id="confirmForm" method="dialog">
+      <div class="dialog__header">
+        <h2 class="dialog__title">Excluir anotação</h2>
+        <button type="button" class="dialog__close" id="btnFecharConfirm" aria-label="Fechar">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="dialog__body">
+        <p class="confirm-text">Tem certeza que deseja excluir esta anotação? Esta ação não pode ser desfeita.</p>
+      </div>
+      <div class="dialog__footer">
+        <button type="button" class="btn btn--secondary" id="btnCancelarExclusao">Cancelar</button>
+        <button type="submit" class="btn btn--danger" id="btnConfirmarExclusao">Excluir</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
